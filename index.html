@@ -30,7 +30,7 @@
             padding: 20px;
             box-shadow: 0px 0px 20px 5px #588157;
         }
-        .un , .E , .Pass{
+        .un , .E , .Pass , .pn{
             margin: 10px;
         }
 
@@ -69,9 +69,9 @@
                 <label for="username">User Name:</label>
                 <input type="text" id="username" name="username" maxlength="16">
             </div>
-            <div class="un">
-                <label for="username">User Name:</label>
-                <input type="text" id="username" name="username" maxlength="16">
+            <div class="pn">
+                <label for="phoneno">Phone no:</label>
+                <input type="tel" id="phoneno" name="phoneno" maxlength="10">
             </div>
             <div class="E">
                 <label for="email">Email:</label>
@@ -90,6 +90,7 @@
         const password = document.getElementById("password")
         const form = document.getElementById("form")
         const errorElement = document.getElementById('error')
+        const phoneno =document.getElementById('phoneno')
         form.addEventListener('submit', (e) => {
             let message = []
             if (username.value === '' || username.value == null) {
@@ -103,6 +104,9 @@
             }
             if (password.value === username) {
                 message.push('User name and password cannot be same')
+            }
+            if(phoneno.value.length <11){
+                message.push('Enter the correct phone number')
             }
             if (message.length > 0) {
                 e.preventDefault()
