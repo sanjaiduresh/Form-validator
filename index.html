@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #344e41;
+            font-family: 'Brush Script MT', cursive;
+
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: 200px;
+            margin-right: 200px;
+            background-color: #588157;
+            color: #dad7cd;
+            margin-top: 100px;
+            padding: 20px;
+            box-shadow: 0px 0px 20px 5px #588157;
+        }
+        .un , .E , .Pass{
+            margin: 10px;
+        }
+
+        button {
+            margin: 10px;
+            justify-content: center;
+            background-color: #dad7cd;
+            color: #000;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0px 0px 20px #dad7cd
+        }
+        button:hover{
+            color: #344e41;
+            background-color: #588157;
+            box-shadow: 0px 0px 20px black
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <h1>
+            Validation
+        </h1>
+        <div id="error"></div>
+        <form method="get" id="form">
+            <div class="un">
+                <label for="username">User Name:</label>
+                <input type="text" id="username" name="username" maxlength="16">
+            </div>
+            <div class="un">
+                <label for="username">User Name:</label>
+                <input type="text" id="username" name="username" maxlength="16">
+            </div>
+            <div class="E">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="Pass">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" maxlength="16">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    <script>
+        const username = document.getElementById("username")
+        const email = document.getElementById("email")
+        const password = document.getElementById("password")
+        const form = document.getElementById("form")
+        const errorElement = document.getElementById('error')
+        form.addEventListener('submit', (e) => {
+            let message = []
+            if (username.value === '' || username.value == null) {
+                message.push('Name is required')
+            }
+            if (password.value.length <= 6) {
+                message.push('Password must be longer than 6 characters')
+            }
+            if (password.value.length >= 16) {
+                message.push('password cannot be longer than 16 characters')
+            }
+            if (password.value === username) {
+                message.push('User name and password cannot be same')
+            }
+            if (message.length > 0) {
+                e.preventDefault()
+                errorElement.innerText = message.join(', ')
+            }
+        })
+    </script>
+
+</body>
+</html>
